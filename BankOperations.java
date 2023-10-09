@@ -44,7 +44,8 @@ public class BankOperations {
 	}
 	
 	//Updating Account
- 	public void updateAccount(int id) {
+ 	public void updateAccount(int id)
+ 	{
 		Integer accountId=id;
 			
 		for(CustomerDetails customer: bankServer) {			
@@ -59,13 +60,40 @@ public class BankOperations {
 		}
 	 			
 	}
-	
+ 	
+ 	public double balanceCheck(int id) {
+ 		Integer accountId=id;
+		
+		for(CustomerDetails customer: bankServer) {			
+			if(customer.getAccountNo().equals(accountId)) {
+				return customer.getBalance();
+			}			
+			}
+		return -1;
  		
-	
-	
-	
-	
-	
-	
-
+ 	}
+ 	public void addMoney(int id) {
+ 		Integer accountId = id;
+ 		for(CustomerDetails customer:bankServer) {
+ 			if(customer.getAccountNo().equals(accountId)) {
+ 				System.out.println("Enter amount you want to add");
+ 				Scanner scan = new Scanner(System.in);
+ 				double money=scan.nextDouble(); 
+ 			     double total=customer.getBalance()+money;
+ 			     customer.setBalance(total);
+ 			     System.out.println("money deposited");
+ 			}
+ 		}
+ 	}
+ 	
+ 	public void updateBalance(int id,double money) {
+ 		Integer accountId = id;
+ 		for(CustomerDetails customer:bankServer) {
+ 			if(customer.getAccountNo().equals(accountId)) {
+ 				customer.setBalance(money);
+ 				
+ 			}
+ 		}
+ 		
+ 	}
 }
